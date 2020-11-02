@@ -92,21 +92,11 @@ with tf.Session() as sess:
     		boxes_[:, [0, 2]] *= (width_ori/float(args.new_size[0]))
     		boxes_[:, [1, 3]] *= (height_ori/float(args.new_size[1]))
 
-
-	    #confusion_matrix += cmc.confusion_matrix(indiceImagen, labels_, boxes_)
-	    #print(confusion_matrix)
+	    if(0):
+	    	confusion_matrix += cmc.confusion_matrix(indiceImagen, labels_, boxes_)
+	    	print(confusion_matrix)
 
     			
-    			
-
-	    '''print("box coords:")
-	    print(boxes_)
-	    print('*' * 30)
-	    print("scores:")
-	    print(scores_)
-	    print('*' * 30)
-	    print("labels:")
-	    print(labels_)'''
 
 	    count += 1
 	    print(count)
@@ -117,9 +107,6 @@ with tf.Session() as sess:
 		    ic.full_box(boxes_,img_ori)
 		    ic.little_box(boxes_,img_ori)
 
-
-
-	    #subprocess.Popen(['python3', '../../space_gap.py',str(boxes_), '/home/ruben/Documents/TFG/Redes/monoResMatch-Tensorflow-master/output/disp/raw/'+image_name+'.png',str(labels_)])
 
 
 	    for i in range(len(boxes_)):
