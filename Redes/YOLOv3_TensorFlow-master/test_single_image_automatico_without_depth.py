@@ -115,4 +115,4 @@ with tf.Session() as sess:
 	    cv2.imwrite("./output/"+os.path.basename(indiceImagen), img_ori)
 	    cv2.waitKey(0)
 
-print(confusion_matrix)
+

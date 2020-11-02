@@ -13,6 +13,7 @@ import sys
 sys.path.append('../../')
 import intensity_calculation as ic 
 import confusion_matrix_calculation as cmc
+import space_gap as sp
 
 from utils.misc_utils import parse_anchors, read_class_names
 from utils.nms_utils import gpu_nms
@@ -110,8 +111,7 @@ with tf.Session() as sess:
 
 
 
-	    subprocess.Popen(['python3', '../../space_gap.py',str(boxes_), '../monoResMatch-Tensorflow-master/output/disp/raw/'+os.path.basename(indiceImagen)[:-4]+'.png',str(labels_)])
-
+	    sp.space_gap(str(boxes_), '../monoResMatch-Tensorflow-master/output/disp/raw/'+os.path.basename(indiceImagen)[:-4]+'.png',str(labels_))
 
 	    for i in range(len(boxes_)):
     		x0, y0, x1, y1 = boxes_[i]
@@ -119,4 +119,4 @@ with tf.Session() as sess:
 	    cv2.imwrite("./output/"+os.path.basename(indiceImagen), img_ori)
 	    cv2.waitKey(0)
 
-print(confusion_matrix)
+

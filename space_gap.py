@@ -108,7 +108,6 @@ def space_gap(boxes, image_path,labels):
 			return 1
 	
 
-	f.close()
 	return 0
 
 

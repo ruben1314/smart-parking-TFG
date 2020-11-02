@@ -58,34 +58,29 @@ if(args.video):
 	name_path = os.path.basename(path[:-4])
 	cut_in_frames(path, name_path)
 
-	startMono = time.time()
 
 	os.chdir("./Redes/monoResMatch-Tensorflow-master/")
 	subprocess.call(["python3","main.py", "--output_path", "./output", "--data_path_image", "../../output/"+name_path+"/", "--filenames_file", "./names", "--checkpoint_path","./CS_K_GT_200_700_raw/model-5000","--save_image"])
+
+	os.chdir("../YOLOv3_TensorFlow-master/")
+	subprocess.call(["python3", "test_single_image_automatico_classic.py", "../../output/"+name_path+"/"])
 
 
 elif(args.folder):
 	
 	write_names(path)	
 	
-	startMono = time.time()
 	os.chdir("./Redes/monoResMatch-Tensorflow-master/")
-	subprocess.call(["python3","main.py", "--output_path", "./output", "--data_path_image", path, "--filenames_file", "./names", "--checkpoint_path","./CS_K_GT_200_700_raw/model-5000","--save_image"])	
+	subprocess.call(["python3","main.py", "--output_path", "./output", "--data_path_image", path, "--filenames_file", "./names", "--checkpoint_path","./CS_K_GT_200_700_raw/model-5000","--save_image"])
+
+	os.chdir("../YOLOv3_TensorFlow-master/")
+	subprocess.call(["python3", "test_single_image_automatico_classic.py", path])	
 
 
 
-endMono = time.time()
 
-startYOLO = time.time()
 
-os.chdir("../YOLOv3_TensorFlow-master/")
-subprocess.call(["python3", "test_single_image_automatico_classic.py", "../monoResMatch-Tensorflow-master/output/disp/raw/"])
 
-endYOLO = time.time()
-
-print("Tiempo red Mono" +  str(endMono - startMono)) 
-
-print("Tiempo red YOLO" +  str(endYOLO - startYOLO)) 
 
 
 
