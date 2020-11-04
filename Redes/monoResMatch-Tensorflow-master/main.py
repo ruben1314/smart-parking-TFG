@@ -222,12 +222,17 @@ def test(network, dataloader):
         print(" [*] Load model: SUCCESS")
 
     num_test_samples = 1 if args.test_single else count_text_lines(args.filenames_file)
-
+    myfile = open('./names',"r")
+    lines = myfile.readlines()
+    lines = [x.strip() for x in lines]
+    print(lines[0])
+    line_count = 0
     for step in range(num_test_samples):
         before_op_time = time.time()
         disp, height, width = sess.run([network.disp_left_est_refined[0], dataloader.image_h,
                                         dataloader.image_w], feed_dict={training_flag: False})
         np.set_printoptions(threshold=sys.maxsize)
+        
         f = open("output.txt","w")
         #f.write(str(disp))
         #print(disp)
@@ -237,6 +242,10 @@ def test(network, dataloader):
         duration = time.time() - before_op_time
         examples_per_sec = args.batch_size / duration
         filename = os.path.basename(args.image_path).split('.')[0] if args.test_single else str(step+1)
+        filename = lines[line_count]
+        filename = filename[:-4]
+        #print(filename_)
+        line_count += 1
         # Resize and scale images
         disp = cv2.resize(disp[0], (width, height), interpolation=cv2.INTER_LINEAR) * (width/args.width)
         if args.post_process:
