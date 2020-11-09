@@ -110,14 +110,11 @@ with tf.Session() as sess:
 
 
 	    existence = sp.space_gap(str(boxes_), '../monoResMatch-Tensorflow-master/output/disp/raw/'+os.path.basename(indiceImagen)[:-4]+'.png',str(labels_))
-	    #print(labels_)
 	    if existence:
     		labels_ = np.append(labels_, [80])
-	    #print(labels_)
 
-	    if(1):	
+	    if(0):	
 	    	confusion_matrix += cmc.confusion_matrix(indiceImagen, labels_, boxes_)
-	    	#print(confusion_matrix)
 	    
 
 	    for i in range(len(boxes_)):
@@ -125,6 +122,6 @@ with tf.Session() as sess:
     		plot_one_box(img_ori, [x0, y0, x1, y1], label=args.classes[labels_[i]] + ', {:.2f}%'.format(scores_[i] * 100), color=color_table[labels_[i]])
 	    cv2.imwrite("./output/"+os.path.basename(indiceImagen), img_ori)
 	    cv2.waitKey(0)
-print(confusion_matrix)
+#print(confusion_matrix)
 
 
