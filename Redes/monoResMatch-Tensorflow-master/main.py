@@ -244,7 +244,7 @@ def test(network, dataloader):
         filename = os.path.basename(args.image_path).split('.')[0] if args.test_single else str(step+1)
         filename = lines[line_count]
         filename = filename[:-4]
-        #print(filename_)
+        #print(filename)
         line_count += 1
         # Resize and scale images
         disp = cv2.resize(disp[0], (width, height), interpolation=cv2.INTER_LINEAR) * (width/args.width)

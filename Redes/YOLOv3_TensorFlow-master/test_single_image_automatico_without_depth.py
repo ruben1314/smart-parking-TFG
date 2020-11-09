@@ -92,9 +92,9 @@ with tf.Session() as sess:
     		boxes_[:, [0, 2]] *= (width_ori/float(args.new_size[0]))
     		boxes_[:, [1, 3]] *= (height_ori/float(args.new_size[1]))
 
-	    if(0):
+	    if(1):
 	    	confusion_matrix += cmc.confusion_matrix(indiceImagen, labels_, boxes_)
-	    	print(confusion_matrix)
+	    	#print(confusion_matrix)
 
     			
 
@@ -114,5 +114,6 @@ with tf.Session() as sess:
     		plot_one_box(img_ori, [x0, y0, x1, y1], label=args.classes[labels_[i]] + ', {:.2f}%'.format(scores_[i] * 100), color=color_table[labels_[i]])
 	    cv2.imwrite("./output/"+os.path.basename(indiceImagen), img_ori)
 	    cv2.waitKey(0)
+print(confusion_matrix)
 
 

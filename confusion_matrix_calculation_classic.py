@@ -52,18 +52,18 @@ def confusion_matrix(indiceImagen, labels_, boxes_):
 	    			
 	    			if str(words[i]) == str(mis_labels[j]) and int(words[i]) == 80:
 	    				words_number += 1
-	    				x1 = int(words[i+1])
+	    				'''x1 = int(words[i+1])
 	    				x2 = int(words[i+2])
 	    				x3 = int(words[i+3])
 	    				x4 = int(words[i+4])
 	    				b1 = int(aux_boxes[j][0])
 	    				b2 = int(aux_boxes[j][1])
 	    				b3 = int(aux_boxes[j][2])
-	    				b4 = int(aux_boxes[j][3])
-	    				if (b1-100) < x1 < (b1+100) and (b2-100) < x2 < (b2+100) and (b3-100) < x3 < (b3+100) and (b4-100) < x4 < (b4+100):
+	    				b4 = int(aux_boxes[j][3])'''
+	    				#if (b1-100) < x1 < (b1+100) and (b2-100) < x2 < (b2+100) and (b3-100) < x3 < (b3+100) and (b4-100) < x4 < (b4+100):
 
-	    					true_positive_number += 1
-	    					true_positive = True
+	    				true_positive_number += 1
+	    				true_positive = True
 	    	confusion_matrix[0][0] += true_positive_number
 	    	confusion_matrix[0][1] += (len(mis_labels) - words_number) + (len(mis_labels) - true_positive_number)
 	    	confusion_matrix[1][0] += words_number - true_positive_number
